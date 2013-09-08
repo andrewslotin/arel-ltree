@@ -1,0 +1,5 @@
+require 'arel/ltree/version'
+require 'arel/ltree/nodes'
+require 'arel/ltree/visitors'
+require 'arel/ltree/predications'
+require 'arel/attributes/ltree'
