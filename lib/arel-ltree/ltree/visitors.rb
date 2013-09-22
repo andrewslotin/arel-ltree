@@ -16,11 +16,11 @@ module Arel
       end
 
       def visit_Arel_Attributes_Ltree(o)
-        "#{quoted(o)}::ltree"
+        "'#{o}'::ltree"
       end
 
       def visit_Arel_Attributes_Lquery(o)
-        "#{quoted(o)}::lquery"
+        "'#{o}'::lquery"
       end
     end
   end
