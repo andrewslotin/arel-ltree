@@ -27,8 +27,13 @@ module Arel
       end
 
       it 'supports matching against the lquery' do
-        node = Nodes::MatchesLquery.new(child_ltree, lquery)
+        node = Nodes::Matches.new(child_ltree, lquery)
         expect(subject.accept(node)).to eq "'1.2.3'::ltree ~ '*.a{2}.b'::lquery"
+      end
+
+      it 'supports matching against the ltree' do
+        node = Nodes::Matches.new(child_ltree, parent_ltree)
+        expect(subject.accept(node)).to eq "'1.2.3'::ltree ~ '1.2'::ltree"
       end
 
       context 'with attribute as a left parameter' do
@@ -48,6 +53,11 @@ module Arel
         it 'supports matching against the lquery' do
           node = attr.matches_lquery(lquery)
           expect(subject.accept(node)).to eq %q{"nodes"."path" ~ '*.a{2}.b'::lquery}
+        end
+
+        it 'supports matching against the ltree' do
+          node = attr.matches_lquery(parent_ltree)
+          expect(subject.accept(node)).to eq %q{"nodes"."path" ~ '1.2'::ltree}
         end
       end
     end

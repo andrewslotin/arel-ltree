@@ -4,11 +4,22 @@ module Arel
       def matches_lquery(other)
         case other
         when String
-          Arel::Ltree::Nodes::MatchesLquery.new(self, Arel::Attributes::Lquery.new(other))
+          Arel::Ltree::Nodes::Matches.new(self, Arel::Attributes::Lquery.new(other))
         when Array
-          Arel::Ltree::Nodes::MatchesLquery.new(self, other.map { |o| Arel::Attributes::Lquery.new(o) })
+          Arel::Ltree::Nodes::Matches.new(self, other.map { |o| Arel::Attributes::Lquery.new(o) })
         else
-          Arel::Ltree::Nodes::MatchesLquery.new(self, other)
+          Arel::Ltree::Nodes::Matches.new(self, other)
+        end
+      end
+
+      def matches_ltree(other)
+        case other
+        when String
+          Arel::Ltree::Nodes::Matches.new(self, Arel::Attributes::Ltree.new(other))
+        when Array
+          Arel::Ltree::Nodes::Matches.new(self, other.map { |o| Arel::Attributes::Ltree.new(o) })
+        else
+          Arel::Ltree::Nodes::Matches.new(self, other)
         end
       end
 

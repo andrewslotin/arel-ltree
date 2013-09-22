@@ -11,7 +11,7 @@ module Arel
         "#{visit o.left} <@ #{visit o.right}"
       end
 
-      def visit_Arel_Ltree_Nodes_MatchesLquery(o)
+      def visit_Arel_Ltree_Nodes_Matches(o)
         "#{visit o.left} ~ #{visit o.right}"
       end
 
