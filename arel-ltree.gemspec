@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'arel_postgres_ltree'
+require 'arel-ltree'
 
 Gem::Specification.new do |spec|
-  spec.name          = "arel-postgres-ltree"
-  spec.version       = ArelPostgresLtree::VERSION
+  spec.name          = "arel-ltree"
+  spec.version       = Arel::Ltree::VERSION
   spec.authors       = ["Andrew Slotin"]
   spec.email         = ["andrew.slotin@gmail.com"]
   spec.description   = %q{Arel extension for PostgreSQL ltree type}
