@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/andrewslotin/arel-ltree.png?branch=master)](https://travis-ci.org/andrewslotin/arel-ltree) [![Build Status](https://travis-ci.org/andrewslotin/arel-ltree.png?branch=master)](https://travis-ci.org/andrewslotin/arel-ltree)
+
 # arel-ltree
 
 Arel extension for PostgreSQL ltree type
