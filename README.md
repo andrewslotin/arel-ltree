@@ -1,12 +1,12 @@
-# Arel::Postgres::Ltree
+# arel-ltree
 
-TODO: Write a gem description
+Arel extension for PostgreSQL ltree type
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'arel-postgres-ltree'
+    gem 'arel-ltree'
 
 And then execute:
 
@@ -14,11 +14,23 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install arel-postgres-ltree
+    $ gem install arel-ltree
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+Node.where(Node.arel_table[:path].ancestor_of('root.subtree.node')).to_sql
+# => SELECT * FROM nodes WHERE "nodes"."path" @> 'root.subtree.node'::ltree;
+
+Node.where(Node.arel_table[:path].descendant_of('root.subtree')).to_sql
+# => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.subtree'::ltree;
+
+Node.where(Node.arel_table[:path].matches_ltree('root.subtree')).to_sql
+# => SELECT * FROM nodes WHERE "nodes"."path" ~ 'root.subtree'::ltree;
+
+Node.where(Node.arel_table[:path].matches_lquery('root.*{1}.node')).to_sql
+# => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.*{1}.node'::lquery;
+```
 
 ## Contributing
 
