@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Andrew Slotin"]
   spec.email         = ["andrew.slotin@gmail.com"]
   spec.description   = %q{Arel extension for PostgreSQL ltree type}
-  spec.summary       = %q{Adds support for ltree operatos to Arel)}
+  spec.summary       = %q{Adds support for ltree operatos to Arel}
   spec.homepage      = ""
   spec.license       = "MIT"
 
