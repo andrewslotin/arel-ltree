@@ -1,4 +1,4 @@
-require 'arel' unless defined? Arel
+require 'arel'
 require 'arel-ltree/ltree/version'
 require 'arel-ltree/ltree/nodes'
 require 'arel-ltree/ltree/visitors'
