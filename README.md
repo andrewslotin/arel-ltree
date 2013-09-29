@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/andrewslotin/arel-ltree.png?branch=master)](https://travis-ci.org/andrewslotin/arel-ltree) [![Dependency Status](https://gemnasium.com/andrewslotin/arel-ltree.png)](https://gemnasium.com/andrewslotin/arel-ltree)
+[![Gem Version](https://badge.fury.io/rb/arel-ltree.png)](http://badge.fury.io/rb/arel-ltree) [![Build Status](https://travis-ci.org/andrewslotin/arel-ltree.png?branch=master)](https://travis-ci.org/andrewslotin/arel-ltree) [![Dependency Status](https://gemnasium.com/andrewslotin/arel-ltree.png)](https://gemnasium.com/andrewslotin/arel-ltree)
 
 # arel-ltree
 
