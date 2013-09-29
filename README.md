@@ -2,7 +2,7 @@
 
 # arel-ltree
 
-Arel extension for PostgreSQL ltree type
+Arel extension for PostgreSQL [ltree](http://www.postgresql.org/docs/9.2/static/ltree.html) type.
 
 ## Installation
 
@@ -20,21 +20,34 @@ Or install it yourself as:
 
 ## Usage
 
+Select all parent nodes:
 ```ruby
 Node.where(Node.arel_table[:path].ancestor_of('root.subtree.node')).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" @> 'root.subtree.node'::ltree;
+```
 
+Select all children nodes:
+```ruby
 Node.where(Node.arel_table[:path].descendant_of('root.subtree')).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.subtree'::ltree;
 
+Match against ltree:
+```ruby
 Node.where(Node.arel_table[:path].matches.ltree('root.subtree')).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" ~ 'root.subtree'::ltree;
-Node.where(Node.arel_table[:path].matches(Arel::Attributes::Ltree.new('root.subtree')).to_sql
-# => SELECT * FROM nodes WHERE "nodes"."path" ~ 'root.subtree'::ltree;
 
+ltree = Arel::Attributes::Ltree.new('root.subtree')
+Node.where(Node.arel_table[:path].matches(ltree).to_sql
+# => SELECT * FROM nodes WHERE "nodes"."path" ~ 'root.subtree'::ltree;
+```
+
+Match against lquery (simple regex for ltree):
+```ruby
 Node.where(Node.arel_table[:path].matches.lquery('root.*{1}.node')).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.*{1}.node'::lquery;
-Node.where(Node.arel_table[:path].matches(Arel::Attributes::Lquery.new('root.*{1}.node')).to_sql
+
+lquery = Arel::Attributes::Lquery.new('root.*{1}.node')
+Node.where(Node.arel_table[:path].matches(lquery).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.*{1}.node'::lquery;
 ```
 
