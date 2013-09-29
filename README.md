@@ -30,6 +30,7 @@ Select all children nodes:
 ```ruby
 Node.where(Node.arel_table[:path].descendant_of('root.subtree')).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.subtree'::ltree;
+```
 
 Match against ltree:
 ```ruby
