@@ -45,11 +45,11 @@ Node.where(Node.arel_table[:path].matches(ltree).to_sql
 Match against lquery (simple regex for ltree):
 ```ruby
 Node.where(Node.arel_table[:path].matches.lquery('root.*{1}.node')).to_sql
-# => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.*{1}.node'::lquery;
+# => SELECT * FROM nodes WHERE "nodes"."path" ~ 'root.*{1}.node'::lquery;
 
 lquery = Arel::Attributes::Lquery.new('root.*{1}.node')
 Node.where(Node.arel_table[:path].matches(lquery).to_sql
-# => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.*{1}.node'::lquery;
+# => SELECT * FROM nodes WHERE "nodes"."path" ~ 'root.*{1}.node'::lquery;
 ```
 
 ## Contributing
