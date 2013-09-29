@@ -27,10 +27,14 @@ Node.where(Node.arel_table[:path].ancestor_of('root.subtree.node')).to_sql
 Node.where(Node.arel_table[:path].descendant_of('root.subtree')).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.subtree'::ltree;
 
-Node.where(Node.arel_table[:path].matches_ltree('root.subtree')).to_sql
+Node.where(Node.arel_table[:path].matches.ltree('root.subtree')).to_sql
+# => SELECT * FROM nodes WHERE "nodes"."path" ~ 'root.subtree'::ltree;
+Node.where(Node.arel_table[:path].matches(Arel::Attributes::Ltree.new('root.subtree')).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" ~ 'root.subtree'::ltree;
 
-Node.where(Node.arel_table[:path].matches_lquery('root.*{1}.node')).to_sql
+Node.where(Node.arel_table[:path].matches.lquery('root.*{1}.node')).to_sql
+# => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.*{1}.node'::lquery;
+Node.where(Node.arel_table[:path].matches(Arel::Attributes::Lquery.new('root.*{1}.node')).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" <@ 'root.*{1}.node'::lquery;
 ```
 

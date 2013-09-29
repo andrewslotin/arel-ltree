@@ -12,6 +12,7 @@ module Arel
       end
 
       def visit_Arel_Ltree_Nodes_Matches(o)
+        raise ArgumentError.new("Missing right operand for MATCH") unless o.right
         "#{visit o.left} ~ #{visit o.right}"
       end
 
