@@ -9,10 +9,14 @@ module Arel
         Arel::Ltree::Nodes::DescendantOf.new(self, other)
       end
 
-      def matches(*args)
-        case args[0]
+      def matches(other = nil)
+        case other
+        when Attributes::Ltxtquery
+          Arel::Ltree::Nodes::Matches.new(self).ltxtquery(other)
+        when Attributes::Lquery
+          Arel::Ltree::Nodes::Matches.new(self).lquery(other)
         when Attributes::Ltree
-          Arel::Ltree::Nodes::Matches.new(self, args[0])
+          Arel::Ltree::Nodes::Matches.new(self).ltree(other)
         when nil
           Arel::Ltree::Nodes::Matches.new(self)
         else
