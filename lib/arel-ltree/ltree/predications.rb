@@ -11,7 +11,7 @@ module Arel
 
       def matches(*args)
         case args[0]
-        when Attributes::Lquery, Attributes::Ltree
+        when Attributes::Ltree
           Arel::Ltree::Nodes::Matches.new(self, args[0])
         when nil
           Arel::Ltree::Nodes::Matches.new(self)
@@ -30,16 +30,20 @@ module Arel
         ltree_matches_node(other, Attributes::Ltree)
       end
 
+      def ltxtquery(other)
+        ltree_matches_node(other, Attributes::Ltxtquery)
+      end
+
       private
 
       def ltree_matches_node(other, rop_node_klass)
         case other
         when String
-          Arel::Ltree::Nodes::Matches.new(self.left, rop_node_klass.new(other))
+          Nodes::Matches.new(self.left, rop_node_klass.new(other))
         when Array
-          Arel::Ltree::Nodes::Matches.new(self.left, other.map { |o| rop_node_klass.new(o) })
+          Nodes::Matches.new(self.left, other.map { |o| rop_node_klass.new(o) })
         else
-          Arel::Ltree::Nodes::Matches.new(self.left, other)
+          Nodes::Matches.new(self.left, other)
         end
       end
     end

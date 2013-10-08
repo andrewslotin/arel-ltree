@@ -17,6 +17,7 @@ module Arel
     end
 
     class Lquery < Ltree; end
+    class Ltxtquery < Ltree; end
 
     Attribute.send :include, Arel::Ltree::Predications
   end
