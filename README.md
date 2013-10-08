@@ -52,6 +52,16 @@ Node.where(Node.arel_table[:path].matches(lquery).to_sql
 # => SELECT * FROM nodes WHERE "nodes"."path" ~ 'root.*{1}.node'::lquery;
 ```
 
+Full-text match:
+```ruby
+Node.where(Node.arel_table[:path].matches.ltxtquery('1 2')).to_sql
+# => SELECT * FROM nodes WHERE "nodes"."path" @ '1 2';
+
+lquery = Arel::Attributes::Ltxtquery.new('1 2')
+Node.where(Node.arel_table[:path].matches(lquery).to_sql
+# => SELECT * FROM nodes WHERE "nodes"."path" @ '1 2';
+```
+
 ## Contributing
 
 1. Fork it
